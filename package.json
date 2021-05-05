@@ -1,0 +1,14 @@
+{
+    "name": "profiles",
+    "description": "Exercise 1: Consuming RESTful API data",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "echo exit 1"
+    },
+    "author": "vinotha",
+    "dependencies": {
+        "handlebars": "^4.7.7"
+    }
+}
