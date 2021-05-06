@@ -6,22 +6,28 @@ const { JSDOM } = require("jsdom");
 const { window } = new JSDOM("");
 const $ = require("jquery")(window);
 
-let url = 'https://5dc588200bbd050014fb8ae1.mockapi.io/assessment';
 
-var resultData;
-fetch(url)
-    .then(res => res.json())
-    .then((data) => {
+async function getUsers() {
+    let url = 'https://5dc588200bbd050014fb8ae1.mockapi.io/assessment';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-        resultData = data;
+async function renderUsers() {
+    let users = await getUsers();
+    console.log(users);
 
-        var source = $(document.getElementById("#hader-template")).html();
-        var template = Handlebars.compile(source);
-        var context = { header: "Customer Profile", content: "Profile Details" };
-        var html = template(context);
-        $(document.body).append(html);
+    var source = $('#header-template').html();
+    var template = Handlebars.compile(source);
+    var htmlTemp = template({ userProfiles: users });
+    $('.container').append(htmlTemp);
+    console.log(htmlTemp);
 
-        Handlebars.registerHelper('render', function (partialId, options) {
+Handlebars.registerHelper('render', function (partialId, options) {
 
             var selector = 'script[type="text/x-handlebars-template"]#' + partialId,
                 source = $(selector).html(),
@@ -30,6 +36,5 @@ fetch(url)
             return new Handlebars.SafeString(html);
         });
 
-
-    })
-    .catch(err => { throw err });
+}
+renderUsers();

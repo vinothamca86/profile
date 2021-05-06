@@ -4,7 +4,7 @@ const fs = require('fs');
 require('./app');
 
 const hostname = '127.0.0.1';
-const port = 3001;
+const port = 3000;
 
 fs.readFile('./index.html', function (err, html) {
     http.createServer((req, res) => {
