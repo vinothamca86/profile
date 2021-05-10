@@ -2,13 +2,16 @@
     "name": "profiles",
     "description": "Exercise 1: Consuming RESTful API data",
     "version": "1.0.0",
-    "main": "app.js",
+    "main": "server.js",
     "scripts": {
-        "start": "node app.js",
+        "start": "node server.js",
         "test": "echo exit 1"
     },
     "author": "vinotha",
     "dependencies": {
-        "handlebars": "^4.7.7"
+        "handlebars": "^4.7.7",
+        "jquery": "^3.6.0",
+        "jsdom": "^16.5.3",
+        "node-fetch": "^2.6.1"
     }
 }
